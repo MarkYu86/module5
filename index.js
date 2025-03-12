@@ -10,9 +10,14 @@ app1.use('/', express.static('public'));
 app2.use('/', express.static('public'));
 app.use('/', express.static('public')); // Main app serves static files too
 
+// Middleware to parse JSON requests (added above routes)
+app.use(express.json()); // This should be above route mappings
+
 // Import routes
 const testRoutes = require('./routes/myTestRoutes');
 const calculatorRoutes = require('./routes/calculatorRoutes');
+// import all user routes (up top in index.js)
+const userRoutes = require('./routes/userRoutes');
 
 // Bind the routes to the /mytest prefix for both servers
 app1.use('/mytest', testRoutes);
@@ -20,6 +25,7 @@ app2.use('/mytest', testRoutes);
 
 // Bind the calculator routes to the /calculator prefix for the main app
 app.use('/calculator', calculatorRoutes);
+app.use('/users', userRoutes);
 
 // Server 1 on port 3000
 const port1 = 3000;
