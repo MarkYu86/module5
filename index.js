@@ -28,7 +28,7 @@ app.use('/calculator', calculatorRoutes);
 app.use('/users', userRoutes);
 
 // Server 1 on port 3000
-const port1 = 3000;
+const port1 = 8080;
 app1.listen(port1, (err) => {
   if (err) {
     console.error(`Error starting Server 1 on port ${port1}:`, err);
