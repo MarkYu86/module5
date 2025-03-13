@@ -1,0 +1,183 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "My Calculator Project",
+    "description": "My User Project Application API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Calculator",
+      "description": "API for Calculus in the system"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/calculator/add": {
+      "get": {
+        "tags": ["Addition Service"],
+        "summary": "Add 2 numbers",
+        "parameters": [
+          {
+            "name": "num1",
+            "in": "query",
+            "description": "The First Number"
+          },
+          {
+            "name": "num2",
+            "in": "query",
+            "description": "The Second number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This service allows you to add two numbers together"
+          },
+          "400": {
+            "description": "Invalid input parameters"
+          }
+        }
+      }
+    },
+    "/calculator/subtract": {
+      "get": {
+        "tags": ["Subtraction Service"],
+        "summary": "Subtract 2 numbers",
+        "parameters": [
+          {
+            "name": "num1",
+            "in": "query",
+            "description": "The First Number"
+          },
+          {
+            "name": "num2",
+            "in": "query",
+            "description": "The Second number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The difference of the two numbers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "integer",
+                      "description": "The result of the subtraction"
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier for the operation"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input parameters"
+          }
+        }
+      }
+    },
+    "/calculator/multiply": {
+      "get": {
+        "tags": ["Multiplication Service"],
+        "summary": "Multiply 2 numbers",
+        "parameters": [
+          {
+            "name": "num1",
+            "in": "query",
+            "description": "The First Number"
+          },
+          {
+            "name": "num2",
+            "in": "query",
+            "description": "The Second number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The product of the two numbers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "integer",
+                      "description": "The result of the multiplication"
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier for the operation"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input parameters"
+          }
+        }
+      }
+    },
+    "/calculator/divide": {
+      "get": {
+        "tags": ["Division Service"],
+        "summary": "Divide 2 numbers",
+        "parameters": [
+          {
+            "name": "num1",
+            "in": "query",
+            "description": "The First Number"
+          },
+          {
+            "name": "num2",
+            "in": "query",
+            "description": "The Second number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The quotient of the two numbers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "number",
+                      "description": "The result of the division"
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier for the operation"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input parameters"
+          },
+          "500": {
+            "description": "Division by zero error"
+          }
+        }
+      }
+    }
+  }
+}

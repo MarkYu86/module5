@@ -1,4 +1,7 @@
 const express = require('express');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
 
 // Create two separate Express app instances
 const app1 = express();
@@ -11,7 +14,6 @@ const app3 = require('./app');
 app1.use('/', express.static('public'));
 app2.use('/', express.static('public'));
 app.use('/', express.static('public')); // Main app serves static files too
-
 // Middleware to parse JSON requests (added above routes)
 app.use(express.json()); // This should be above route mappings
 
@@ -28,6 +30,11 @@ app2.use('/mytest', testRoutes);
 // Bind the calculator routes to the /calculator prefix for the main app
 app.use('/calculator', calculatorRoutes);
 app.use('/users', userRoutes);
+app.use(
+  '/api-docs',
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument)
+  );
 
 // Server 1 on port 8080
 const port1 = 8080;
@@ -55,7 +62,7 @@ app.listen(port, (err) => {
   if (err) {
     console.error(`Error starting Main App on port ${port}:`, err);
   } else {
-    console.log(`Main App running at http://localhost:${port}`);
+    console.log(`Calculator App running at http://localhost:${port}`);
   }
 });
 //port for API Test
