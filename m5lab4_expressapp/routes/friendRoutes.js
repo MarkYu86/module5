@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const friends = require("../models/friends");
 const {
+    friends,
   findFriend,
   filterFriend,
   updatedFriend,
   addFriend,
-} = require("m5lab4_expressapp/models/friends.js");
+} = require("../models/friends");
 
 // TODO - #1: Add support to the 'filter' endpoint for a new query parameter 'letter' which filters friends by starting letter
 // TODO - #2: Modify the 'info' route to only return the user-agent, content-type and accept header data
@@ -19,6 +19,7 @@ const {
 
 // default endpoint, gets all friends
 router.get("/", (req, res) => {
+    console.log(friends);
   res.json(friends);
 });
 
@@ -42,8 +43,6 @@ router.get("/info", (req, res) => {
     "content-type": contentType,
     accept: accept,
   } = req.headers;
-  res.json({ userAgent, contentType, accept });
-
   // Modify this response to just return info on the user-agent, content-type and accept headers
   res.json({ userAgent, contentType, accept });
 });
