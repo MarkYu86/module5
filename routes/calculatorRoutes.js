@@ -1,61 +1,21 @@
+// routes/calculatorRoutes.js
+
 const express = require('express');
 const router = express.Router();
 
+// Import the controller
+const calculatorController = require('../controller/calculatorController');
+
 // Addition route
-router.get('/add', (req, res) => {
-    let num1 = parseInt(req.query.num1);
-    let num2 = parseInt(req.query.num2);
-    
-    if (isNaN(num1) || isNaN(num2)) {
-        return res.status(400).json({ error: "Both num1 and num2 must be valid numbers" });
-    }
-    
-    let sum = num1 + num2;
-    res.status(200).json({ result: sum });
-});
+router.get('/add', calculatorController.add);
 
 // Subtraction route
-router.get('/subtract', (req, res) => {
-    let num1 = parseInt(req.query.num1);
-    let num2 = parseInt(req.query.num2);
-
-    if (isNaN(num1) || isNaN(num2)) {
-        return res.status(400).json({ error: "Both num1 and num2 must be valid numbers" });
-    }
-
-    let difference = num1 - num2;
-    res.status(200).json({ result: difference });
-});
+router.get('/subtract', calculatorController.subtract);
 
 // Multiplication route
-router.get('/multiply', (req, res) => {
-    let num1 = parseInt(req.query.num1);
-    let num2 = parseInt(req.query.num2);
-
-    if (isNaN(num1) || isNaN(num2)) {
-        return res.status(400).json({ error: "Both num1 and num2 must be valid numbers" });
-    }
-
-    let product = num1 * num2;
-    res.status(200).json({ result: product });
-});
+router.get('/multiply', calculatorController.multiply);
 
 // Division route
-router.get('/divide', (req, res) => {
-    let num1 = parseInt(req.query.num1);
-    let num2 = parseInt(req.query.num2);
-
-    if (isNaN(num1) || isNaN(num2)) {
-        return res.status(400).json({ error: "Both num1 and num2 must be valid numbers" });
-    }
-
-    // Handle division by zero
-    if (num2 === 0) {
-        return res.status(400).json({ error: "Cannot divide by zero" });
-    }
-
-    let quotient = num1 / num2;
-    res.status(200).json({ result: quotient });
-});
+router.get('/divide', calculatorController.divide);
 
 module.exports = router;

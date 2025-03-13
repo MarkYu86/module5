@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
-router.get('/test', (req, res) => {
-res.send('Hello World!')
-})
-router.get('/test2', (req, res) => {
-res.send('Second test')
-})
+
+const myTestController = require('../controller/myTestController');
+
+router.get('/test', myTestController.test);
+router.get('/test2', myTestController.test2);
 
 module.exports = router;
