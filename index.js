@@ -4,6 +4,8 @@ const express = require('express');
 const app1 = express();
 const app2 = express();
 const app = express();  // This is the main app for calculator routes
+const app3 = require('./app');
+
 
 // Middleware to serve static content from the "public" directory for both apps
 app1.use('/', express.static('public'));
@@ -27,7 +29,7 @@ app2.use('/mytest', testRoutes);
 app.use('/calculator', calculatorRoutes);
 app.use('/users', userRoutes);
 
-// Server 1 on port 3000
+// Server 1 on port 8080
 const port1 = 8080;
 app1.listen(port1, (err) => {
   if (err) {
@@ -56,3 +58,9 @@ app.listen(port, (err) => {
     console.log(`Main App running at http://localhost:${port}`);
   }
 });
+//port for API Test
+const port3 = 6000
+app3.listen(port3, () => {
+  console.log(`Example app listening at
+  http://localhost:${port}`)
+  })
