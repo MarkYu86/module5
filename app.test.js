@@ -5,8 +5,8 @@ const app = require("./app");
 
 describe("Calculator Routes", () => {
   // generate some random numbers to test the calculator
-  let number1 = Math.floor(Math.random() * 1_000_000);
-  let number2 = Math.floor(Math.random() * 1_000_000);
+  let number1 = Math.floor(Math.random() * 1_000_000)+1;
+  let number2 = Math.floor(Math.random() * 1_000_000)+1;
   //unit test '+'
   test("GET /calculator/add => sum of numbers", () => {
     return request(app)
@@ -16,6 +16,7 @@ describe("Calculator Routes", () => {
       .then((response) => {
         expect(response.body).toEqual({
           result: number1 + number2,
+          id:expect.any(Number),
         });
       });
   });
@@ -29,6 +30,7 @@ describe("Calculator Routes", () => {
       .then((response) => {
         expect(response.body).toEqual({
           result: number1 - number2,
+          id:expect.any(Number),
         });
       });
   });
@@ -41,6 +43,7 @@ describe("Calculator Routes", () => {
       .then((response) => {
         expect(response.body).toEqual({
           result: number1 * number2,
+          id:expect.any(Number),
         });
       });
   });
@@ -53,6 +56,7 @@ describe("Calculator Routes", () => {
       .then((response) => {
         expect(response.body).toEqual({
           result: number1 / number2,
+          id:expect.any(Number),
         });
       });
   });
